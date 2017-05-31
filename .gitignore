@@ -1,5 +1,6 @@
 *.gem
 *.rbc
+NOTES.md
 /.config
 /coverage/
 /InstalledFiles
