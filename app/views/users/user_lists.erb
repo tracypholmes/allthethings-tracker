@@ -1,0 +1,7 @@
+<h1>Welcome, <%= @user.username %></h1>
+<h4>You can find all of your lists here:</h4>
+<% @user.lists each do |list| %>
+<ol>
+  <li><a href="/lists/<%=list.id%>"><%= list.list_title %></a></li>
+</ol>
+<% end %>
