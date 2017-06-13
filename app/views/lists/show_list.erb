@@ -2,15 +2,13 @@
 
 <br><br>
 <%= @list.list_title %>
-<br><br>
 
-<a href="/lists/<%=@list.id%>/edit">Edit List Title</a>
+<a href="/lists/<%=@list.id%>/edit">Edit Title</a>
 
 <br><br>
-<a href="/lists">All Lists</a>
-<br><br>
+<a href='/lists' class='btn btn-primary' role='button'>All Lists</a>
 
 <form action="/lists/<%=@list.id%>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete List">
+  <input class="btn btn-primary" type="submit" value="Delete List">
 </form>
