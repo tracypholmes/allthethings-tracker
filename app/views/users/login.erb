@@ -1,10 +1,11 @@
-<h1>Login to  AllTheThings</h1>
-<h2>Let's get you back to your lists...</h2>
 
-<form action="/login" method="post">
-  <input type="text" name="username" placeholder="Username:"><br><br>
-  <input type="password" name="password" placeholder="Password:"><br><br>
-  <input class="btn btn-primary" type="submit" value="Submit">
-  <a href='/signup' class="btn btn-primary" role="button">Sign Up</a>
-</form>
-<br>
+<div class="container">
+  <h2>Please sign in...</h2>
+
+  <form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username:"><br><br>
+    <input type="password" name="password" placeholder="Password:"><br><br>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
+    <%#<a href='/signup' class="btn btn-primary" role="button">Sign Up</a>%>
+  </form>
+</div>
