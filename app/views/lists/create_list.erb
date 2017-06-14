@@ -1,4 +1,7 @@
 <h1>New List</h1>
+<% if flash.has?(:notice) %>
+  <p class="flash"><%= flash[:notice] %></p>
+<% end %>
 
 <form action="/lists" method="post">
   <input type="text" name="list_title">

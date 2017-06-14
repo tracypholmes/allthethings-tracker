@@ -5,6 +5,7 @@ class ListsController < ApplicationController
       @lists = List.all
       erb :'lists/lists'
     else
+      flash[:notice] = "Please log in first to view your list(s)."
       redirect to '/login'
     end
   end
@@ -42,6 +43,7 @@ class ListsController < ApplicationController
       if @list.user_id == current_user.id
         erb :'/lists/edit_list'
       else
+        flash[:notice] = "You can only edit your own list(s)."
         redirect to "/lists/#{params[:id]}"
       end
     else
