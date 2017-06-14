@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'/users/user_lists'
+  end
 
   get '/signup' do
     if !logged_in?
@@ -10,7 +14,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     user = User.create(params) # have them create a new account
-    # if the user saves assign session id to user id then redirect them to the lists
+    # if user saves assign session id to user id redirect them to the lists
     if user.save
       session[:id] = user.id
       redirect to '/lists'
@@ -45,5 +49,4 @@ class UsersController < ApplicationController
       redirect to '/'
     end
   end
-
 end
