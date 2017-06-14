@@ -1,4 +1,4 @@
 class Item < ActiveRecord::Base
-  has_many :lists
-  has_many :users, through: :lists
+  belongs_to :lists
+  belongs_to :users
 end
