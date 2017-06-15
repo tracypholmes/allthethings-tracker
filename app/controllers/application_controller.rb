@@ -22,5 +22,9 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= User.find(session[:user_id])
     end
+
+    def prettify_date(time)
+	    time.strftime("%d %b %Y") unless time==nil
+	  end 
   end
 end
