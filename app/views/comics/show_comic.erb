@@ -1,5 +1,10 @@
 <h1>Comic: <%= @comic.title %></h1>
-
+<% if flash.has?(:notice) %>
+<p class="flash"><%= flash[:notice] %></p>
+<% end %>
+<% if flash.has?(:warning) %>
+<p class="flash"><%= flash[:warning] %></p>
+<% end %>
 <table class="table table-bordered">
 <div class="has-warning">
 
