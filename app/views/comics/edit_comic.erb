@@ -1,14 +1,18 @@
-<h1>List: <%= @list.id %></h1>
+<h1>Comic: <%= @comic.title %></h1>
 
-<br><br>
-<%= @list.list_title %>
-<br><br>
+<h3>Edit Information Below</h3> 
 
-<%#Should this be edit list title?!%>
-<h3>Edit List Below</h3> 
-
-<form action="/lists/<%=@list.id%>" method="post">
+<form action="/comics/<%=@comic.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
-  <input type="text" name="list_title" value="<%=@list.list_title%>" id="list_title">
+  Title: <input type="text" name="title" value="<%=@comic.title%>" id="title"><br><br>
+  Series: <input type="text" name="series_name" value="<%=@comic.series_name%>" id="series_name"><br><br>
+  Creator/Author: <input type="text" name="creator" value="<%=@comic.creator%>" id="creator"><br><br>
+  Publisher: <input type="text" name="publisher" value="<%=@comic.publisher%>" id="publisher"><br><br>
+  Published Date: <input type="date" name="published_date" value="<%=@comic.published_date%>" id="published_date"><br><br>
+  Issue number: <input type="number" name="issue" value="<%=@comic.issue%>" id="issue"><br><br>
+  <input type="radio" name="media_type" value="Digital"> Digital<br><br>
+  <input type="radio" name="media_type" value="Physical" checked> Physical<br><br>
   <input type="submit" value="submit">
 </form>
+
+<a href="/comics" class="btn btn-primary">Go Back</a>
