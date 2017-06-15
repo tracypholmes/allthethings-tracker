@@ -5,7 +5,7 @@
 <% if flash.has?(:warning) %>
 <p class="flash"><%= flash[:warning] %></p>
 <% end %>
-<h3>Edit Information Below</h3> 
+<h5>Please Update Information Below</h5> 
 
 <form action="/comics/<%=@comic.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
@@ -17,7 +17,6 @@
   Issue number: <input type="number" name="issue" value="<%=@comic.issue%>" id="issue"><br><br>
   <input type="radio" name="media_type" value="Digital"> Digital<br><br>
   <input type="radio" name="media_type" value="Physical" checked> Physical<br><br>
-  <input type="submit" value="submit">
-</form>
-
+  <input class="btn btn-large btn-primary"type="submit" value="Update">
 <a href="/comics" class="btn btn-primary">Go Back</a>
+</form>
