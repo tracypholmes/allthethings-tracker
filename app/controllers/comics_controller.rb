@@ -66,7 +66,7 @@ class ComicsController < ApplicationController
     end
   end
 
-  delete '/comics/:id/delete' do
+  get '/comics/:id/delete' do
     if logged_in?
       comic = current_user.comics.find_by(id: params[:id])
       if comic
