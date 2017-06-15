@@ -1,11 +1,40 @@
 <h1>Welcome, <%= current_user.username %></h1>
 
-<h4>All lists</h4>
-<% @lists.each do |list| %>
-<ol>
-  <li><a href="/lists/<%=list.id%>"><%= list.list_title %></a></li>
-</ol>
-<% end %>
+<h4>All Comics</h4>
+<table class="table table-bordered">
+<div class="has-warning">
 
-<a href="/lists/new">Create a New List</a><br><br>
-<a href="/logout">Log Out</a>
+</div>
+     <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Series</th>
+            <th>Author/Creator</th>
+            <th>Publisher</th>
+            <th>Date Published</th>
+            <th>Issue #</th>
+            <th>Media Type</th>
+            <th>Actions</th>
+        </tr>
+     </thead>
+     <tbody>
+      <% @comics.each do |comic| %>
+        <tr>
+          <td><%= comic[:id] %></td>
+          <td><%= comic[:title] %></td>
+          <td><%= comic[:series_name] %></td>
+          <td><%= comic[:creator] %></td>
+          <td><%= comic[:publisher] %></td>
+          <td><%= prettify_date(comic[:published_date]) %></td>
+          <td><%= comic[:issue] %></td>
+          <td><%= comic[:media_type] %></td>
+          <td><a href="/comics/<%= comic[:id] %>/edit" class="btn btn-danger">Edit</a>
+              <a href="/comics/<%= comic[:id] %>/delete" class="btn btn-danger">Delete</a>
+          </td>              
+        </tr>
+      <% end %>
+     </tbody>
+</table>
+  <a href="/comics/new" class="btn btn-primary">Add A New Comic</a>
+<a href="/logout" class="btn btn-primary">Logout</a>
