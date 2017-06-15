@@ -1,9 +1,16 @@
-<h1>New List</h1>
-<% if flash.has?(:notice) %>
-  <p class="flash"><%= flash[:notice] %></p>
-<% end %>
+<div class="container">
+  <h1>New Comic</h1>
 
-<form action="/lists" method="post">
-  <input type="text" name="list_title">
-  <input type="submit" value="submit">
-</form>
+  <form action="/comics" method="post">
+      <input type="text" name="title" placeholder="Title:"><br><br>
+      <input type="text" name="series_name" placeholder="Series:"><br><br>
+      <input type="text" name="creator" placeholder="Author/Creator:"><br><br>
+      <input type="text" name="publisher" placeholder="Publisher:"><br><br>
+      <input type="date" name="published_date" placeholder="Published Date:"><br><br>
+      <input type="number" name="issue" placeholder="Issue Number:"><br><br>
+      <input type="radio" name="media_type" value="Digital"> Digital<br><br>
+      <input type="radio" name="media_type" value="Physical" checked> Physical<br><br>
+      <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">
+  </form>
+</div>
+
