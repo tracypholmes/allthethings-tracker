@@ -1,7 +1,7 @@
 <h1>Welcome, <%= @user.username %></h1>
-<h4>You can find all of your lists here:</h4>
-<% @user.lists each do |list| %>
+<h4>You can find all of your comics here:</h4>
+<% @user.comics each do |comic| %>
 <ol>
-  <li><a href="/lists/<%=list.id%>"><%= list.list_title %></a></li>
+  <li><a href="/comics/<%=comic.id%>"><%= comic.title %></a></li>
 </ol>
 <% end %>
