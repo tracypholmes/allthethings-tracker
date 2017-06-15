@@ -13,14 +13,12 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.create(params) # have them create a new account
-    # if user saves assign session id to user id redirect them to the comics
+    user = User.create(params) 
     if user.save
       flash[:notice] = "Thanks for signing up!"
       session[:id] = user.id
       redirect to '/comics'
-    else # otherwise
-      # added for validation error messages
+    else 
       flash[:error] = user.errors.full_messages.join
       redirect to '/signup' # redirect them to signup
     end
@@ -40,11 +38,8 @@ class UsersController < ApplicationController
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect '/comics'
-      elsif
-        flash[:error] = "Invalid password"
-        redirect to '/login'
       else
-        flash[:error] = "Invalid username"
+        flash[:error] = "Invalid username or password"
         redirect to '/login'
       end
     else
@@ -56,8 +51,8 @@ class UsersController < ApplicationController
   get '/logout' do
     if logged_in?
       session.destroy
-      flash[:notice] = 'Successfully logged out.'
       redirect to '/login'
+      flash[:notice] = 'Successfully logged out.'
     else
       redirect to '/'
     end
