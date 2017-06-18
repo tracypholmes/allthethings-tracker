@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  get '/users/comics' do
-    @comics = current_user.comics
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
     erb :'/users/user_comics'
   end
 
@@ -13,13 +13,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.new(params) 
+    user = User.create(params) 
     if user.save
-      session[:user_id] = user.id
       flash[:notice] = "Thanks for signing up!"
+      session[:id] = user.id
       redirect to '/comics'
     else 
-      flash[:notice] = user.errors.full_messages.join(', ')
+      flash[:error] = user.errors.full_messages.join
       redirect to '/signup' # redirect them to signup
     end
   end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   post '/login' do
     user = User.find_by(username: params[:username])
     if user
-      if user.authenticate(params[:password])
+      if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect '/comics'
       else
@@ -43,14 +43,18 @@ class UsersController < ApplicationController
         redirect to '/login'
       end
     else
-      flash[:error] = "This account does not exist. Please create one."
+      flash.now[:error] = "This account does not exist. Please create one."
       redirect to '/signup'
     end
   end
   
   get '/logout' do
-    session.destroy
-    redirect to '/login'
-    flash[:notice] = 'Successfully logged out.'
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+      flash[:notice] = 'Successfully logged out.'
+    else
+      redirect to '/'
+    end
   end
 end

@@ -1,62 +1,81 @@
 class ComicsController < ApplicationController
-#  THIS AND FLASH SHOULD WORK OUTSIDE OF CORNEAL!
-  before do 
-    authenticate_user
-  end
-
   get '/comics' do
-    @comics = Comic.all
-    erb :'comics/comics'
+    if logged_in?
+      @comics = Comic.all
+      erb :'comics/comics'
+    else
+      flash[:warning] = 'Please log in first to view your comic(s).'
+      redirect to '/login'
+    end
   end
 
   get '/comics/new' do
-    erb :'/comics/add_comic'
+    if logged_in?
+      erb :'/comics/add_comic'
+    else
+      redirect to '/login'
+    end
   end
 
   post '/comics' do
-    comic = current_user.comics.build(params[:comic])
-    if comic.save
-      redirect to '/comics'
+
+    if params.value?('')
+      redirect to '/comics/new'
     else
-      flash[:notice] = comic.errors.full_messages.uniq.join(', ')
-      erb :'/comics/add_comic'
+      user = User.find(session[:user_id])
+      Comic.create(user_id: user.id, title: params[:title], series_name: params[:series_name], creator: params[:creator], publisher: params[:publisher], published_date: params[:published_date], issue: params[:issue], media_type: params[:media_type])
+      redirect to '/comics'
     end
   end
 
   get '/comics/:id' do
-    @comic = Comic.find_by_id(params[:id])
-    erb :'/comics/show_comic'
+    if logged_in?
+      @comic = Comic.find_by_id(params[:id])
+      erb :'/comics/show_comic'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/comics/:id/edit' do
-    comic = current_user.comics.find_by(id: params[:id])
-    if @comic
-      erb :'/comics/edit_comic'
+    if logged_in?
+      @comic = Comic.find_by_id(params[:id])
+      if @comic.user_id == current_user.id
+        erb :'/comics/edit_comic'
+      else
+        flash[:warning] = 'You can only edit your own comic books!'
+        redirect to "/comics"
+      end
     else
-      flash[:warning] = 'You can only edit your own comic books!'
-      redirect to "/comics"
+      redirect to '/login'
     end
   end
 
   patch '/comics/:id' do
-    comic = current_user.comics.find_by(id: params[:id])
-    if params.value?('')
-      flash[:warning] = "Please make sure all fields are completed."
-      redirect to "/comics/#{params[:id]}/edit"
+    if logged_in?
+      comic = current_user.comics.find_by(id: params[:id])
+      if params.value?('')
+        flash[:warning] = "Please make sure all fields are completed."
+        redirect to "/comics/#{params[:id]}/edit"
+      else
+        comic.update(title: params[:title], series_name: params[:series_name], creator: params[:creator], publisher: params[:publisher], published_date: params[:published_date], issue: params[:issue], media_type: params[:media_type])
+        redirect to '/comics'
+      end
     else
-      comic.update(params)
-      redirect to '/comics'
+      redirect to '/login'
     end
   end
 
   get '/comics/:id/delete' do
-    comic = current_user.comics.find_by(id: params[:id])
-    if comic
-      comic.delete
-      redirect to '/comics'
-    else
-      flash[:warning] = 'You can only delete your own comics!'
-      redirect to "/comics/#{params[:id]}"
+    if logged_in?
+      comic = current_user.comics.find_by(id: params[:id])
+      if comic
+        comic.delete
+        redirect to '/comics'
+      else
+        flash[:warning] = 'You can only delete your own comics!'
+        redirect to "/comics/#{params[:id]}"
+      end
     end
   end
 end

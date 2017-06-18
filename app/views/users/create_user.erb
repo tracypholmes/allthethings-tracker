@@ -1,4 +1,10 @@
 <h1>Create Account</h1>
+<% if flash.has?(:notice) %>
+<p class="flash"><%= flash[:notice] %></p>
+<% end %>
+<% if flash.has?(:warning) %>
+<p class="flash"><%= flash[:warning] %></p>
+<% end %>
 
 <form action="/signup" method="post">
   <label for="username">Username</label><br>
