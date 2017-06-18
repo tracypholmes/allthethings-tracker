@@ -1,10 +1,14 @@
-
-<div class="container">
-  <h2>Please sign in...</h2>
-
-  <form action="/login" method="post">
-    <input type="text" name="username" placeholder="Username:"><br><br>
-    <input type="password" name="password" placeholder="Password:"><br><br>
-    <input class="btn btn-lg btn-primary" type="submit" value="Sign in">
-  </form>
-</div>
+<h2>Please sign in...</h2>
+<% if flash.has?(:notice) %>
+  <p class="flash"><%= flash[:notice] %></p>
+  <% end %>
+  <% if flash.has?(:warning) %>
+  <p class="flash"><%= flash[:warning] %></p>
+  <% end %>
+<form action="/login" method="post">
+  <input type="text" name="username" placeholder="Username:"><br><br>
+  <input type="password" name="password" placeholder="Password:"><br><br>
+  <input class="btn btn-primary" type="submit" value="Sign in">
+  <a href="/signup" class="btn btn-primary">Sign Up</a>
+</form>
+  

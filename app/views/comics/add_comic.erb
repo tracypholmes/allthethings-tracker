@@ -1,15 +1,21 @@
   <h1>New Comic</h1>
+  
+  <% if flash.has?(:notice) %>
+    <p class="flash"><%= flash[:notice] %></p>
+  <% end %>
 
+  <% if flash.has?(:warning) %>
+    <p class="flash"><%= flash[:warning] %></p>
+  <% end %>
+  
   <form action="/comics" method="post">
-      <input type="text" id="title" name="title" placeholder="Title:"><br><br>
-      <input type="text" name="series_name" placeholder="Series:"><br><br>
-      <input type="text" name="creator" placeholder="Author/Creator:"><br><br>
-      <input type="text" name="publisher" placeholder="Publisher:"><br><br>
-      <input type="date" name="published_date" placeholder="Published Date:"><br><br>
-      <input type="number" name="issue" placeholder="Issue Number:"><br><br>
-      <input type="radio" name="media_type" value="Digital"> Digital<br><br>
-      <input type="radio" name="media_type" value="Physical" checked> Physical<br><br>
-      <input class="btn btn-large btn-primary" type="submit" value="Submit">
+    <input type="text" name="comic[title]" placeholder="Title:"><br><br>
+    <input type="text" name="comic[series_name]" placeholder="Series:"><br><br>
+    <input type="text" name="comic[creator]" placeholder="Author/Creator:"><br><br>
+    <input type="text" name="comic[publisher]" placeholder="Publisher:"><br><br>
+    <input type="date" name="comic[published_date]" placeholder="Published Date:"><br><br>
+    <input type="number" name="comic[issue]" placeholder="Issue Number:"><br><br>
+    <input type="radio" name="comic[media_type]" value="Digital"> Digital<br><br>
+    <input type="radio" name="comic[media_type]" value="Physical" checked> Physical<br><br>
+    <input class="btn btn-large btn-primary" type="submit" value="Submit">
   </form>
-</div>
-
