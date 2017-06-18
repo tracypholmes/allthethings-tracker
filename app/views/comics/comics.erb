@@ -1,0 +1,49 @@
+<h1>Welcome, <%= current_user.username %></h1>
+<% if flash.has?(:notice) %>
+<p class="flash"><%= flash[:notice] %></p>
+<% end %>
+<% if flash.has?(:warning) %>
+<p class="flash"><%= flash[:warning] %></p>
+<% end %>
+<h4>Here is a list of comics currently in the inventory.</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Series</th>
+      <th>Author/Creator</th>
+      <th>Publisher</th>
+      <th>Date Published</th>
+      <th>Issue #</th>
+      <th>Media Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @comics.each do |comic| %>
+    <tr>
+      <td><%= comic[:id] %></td>
+      <td><%= comic[:title] %></td>
+      <td><%= comic[:series_name] %></td>
+      <td><%= comic[:creator] %></td>
+      <td><%= comic[:publisher] %></td>
+      <td><%= prettify_date(comic[:published_date]) %></td>
+      <td><%= comic[:issue] %></td>
+      <td><%= comic[:media_type] %></td>
+      <td>
+        <a href="/comics/<%= comic[:id] %>/edit" class="btn btn-danger">Edit</a>
+        <a href="/comics/<%= comic[:id] %>/delete" class="btn btn-danger">Delete</a>
+      </td>              
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<a href="/comics/new" class="btn btn-primary">Add A New Comic</a>
+<<<<<<< HEAD
+
+=======
+<a href="/users/comics" class="btn btn-primary">View My Comics</a>
+>>>>>>> 66aad80ea491a429fdc451b229a7efd80f411836
+<a href="/logout" class="btn btn-primary">Logout</a>
