@@ -16,11 +16,11 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     # Feature Luke wanted, but it wouldn't work. Implement it last.
-    def authenticate_user
-      if !logged_in?
-        redirect to '/login'
-      end
-    end
+    # def authenticate_user
+    #   unless logged_in?
+    #     redirect to '/login'
+    #   end
+    # end
     
     def logged_in?
       !!session[:user_id]
