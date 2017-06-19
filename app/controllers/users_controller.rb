@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       session[:id] = user.id
       redirect to '/comics'
     else 
-      flash[:error] = user.errors.full_messages.join
+      flash[:notice] = user.errors.full_messages.join
       redirect to '/signup' # redirect them to signup
     end
   end
@@ -39,11 +39,11 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect '/comics'
       else
-        flash[:error] = "Invalid username or password"
+        flash[:notice] = "Invalid username or password"
         redirect to '/login'
       end
     else
-      flash.now[:error] = "This account does not exist. Please create one."
+      flash[:notice] = "This account does not exist. Please create one."
       redirect to '/signup'
     end
   end
