@@ -1,10 +1,5 @@
 <h1>Comic: <%= @comic.title %></h1>
-<% if flash.has?(:notice) %>
-<p class="flash"><%= flash[:notice] %></p>
-<% end %>
-<% if flash.has?(:warning) %>
-<p class="flash"><%= flash[:warning] %></p>
-<% end %>
+
 <h5>Please Update Information Below</h5> 
 
 <form action="/comics/<%=@comic.id%>" method="post">

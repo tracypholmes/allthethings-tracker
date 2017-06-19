@@ -1,10 +1,5 @@
 <h2>Please sign in...</h2>
-<% if flash.has?(:notice) %>
-  <p class="flash"><%= flash[:notice] %></p>
-  <% end %>
-  <% if flash.has?(:warning) %>
-  <p class="flash"><%= flash[:warning] %></p>
-  <% end %>
+
 <form action="/login" method="post">
   <input type="text" name="username" placeholder="Username:"><br><br>
   <input type="password" name="password" placeholder="Password:"><br><br>
