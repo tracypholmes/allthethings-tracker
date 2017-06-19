@@ -2,7 +2,6 @@ class ComicsController < ApplicationController
   # before do
   #   authenticate_user
   # end
-  
   get '/comics' do
     if logged_in?
       @comics = Comic.all
@@ -22,7 +21,7 @@ class ComicsController < ApplicationController
   end
 
   post '/comics' do
-  comic = current_user.comics.build(params[:comic])
+    comic = current_user.comics.build(params[:comic])
     if comic.save
       redirect to '/comics'
     else
@@ -47,7 +46,7 @@ class ComicsController < ApplicationController
         erb :'/comics/edit_comic'
       else
         flash[:notice] = 'You can only edit your own comic books!'
-        redirect to "/comics"
+        redirect to '/comics'
       end
     else
       redirect to '/login'
@@ -58,9 +57,9 @@ class ComicsController < ApplicationController
     if logged_in?
       comic = current_user.comics.find_by(id: params[:id])
       if params.value?('')
-        flash[:notice] = "Please make sure all fields are completed."
+        flash[:notice] = 'Please make sure all fields are completed.'
         redirect to "/comics/#{params[:id]}/edit"
-      else #tried this with (params) and did not work!
+      else # tried this with (params) and did not work!
         comic.update(title: params[:title], series_name: params[:series_name], creator: params[:creator], publisher: params[:publisher], published_date: params[:published_date], issue: params[:issue], media_type: params[:media_type])
         redirect to '/comics'
       end
