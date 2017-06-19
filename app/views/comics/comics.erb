@@ -1,10 +1,5 @@
 <h1>Welcome, <%= current_user.username %></h1>
-<% if flash.has?(:notice) %>
-<p class="flash"><%= flash[:notice] %></p>
-<% end %>
-<% if flash.has?(:warning) %>
-<p class="flash"><%= flash[:warning] %></p>
-<% end %>
+
 <h4>Here is a list of comics currently in the inventory.</h4>
 <table class="table table-bordered">
   <thead>
