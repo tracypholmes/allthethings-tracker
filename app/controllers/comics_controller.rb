@@ -1,4 +1,8 @@
 class ComicsController < ApplicationController
+  # before do
+  #   authenticate_user
+  # end
+  
   get '/comics' do
     if logged_in?
       @comics = Comic.all
@@ -56,7 +60,7 @@ class ComicsController < ApplicationController
       if params.value?('')
         flash[:notice] = "Please make sure all fields are completed."
         redirect to "/comics/#{params[:id]}/edit"
-      else
+      else #tried this with (params) and did not work!
         comic.update(title: params[:title], series_name: params[:series_name], creator: params[:creator], publisher: params[:publisher], published_date: params[:published_date], issue: params[:issue], media_type: params[:media_type])
         redirect to '/comics'
       end
