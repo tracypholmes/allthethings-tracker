@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    user = User.create(params) 
+    user = User.new(params) 
     if user.save
       flash[:notice] = "Thanks for signing up!"
       session[:id] = user.id
