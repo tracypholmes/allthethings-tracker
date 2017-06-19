@@ -4,7 +4,7 @@ class ComicsController < ApplicationController
       @comics = Comic.all
       erb :'comics/comics'
     else
-      flash[:warning] = 'Please log in first to view your comic(s).'
+      flash[:notice] = 'Please log in first to view your comic(s).'
       redirect to '/login'
     end
   end
@@ -43,7 +43,7 @@ class ComicsController < ApplicationController
       if @comic.user_id == current_user.id
         erb :'/comics/edit_comic'
       else
-        flash[:warning] = 'You can only edit your own comic books!'
+        flash[:notice] = 'You can only edit your own comic books!'
         redirect to "/comics"
       end
     else
@@ -55,7 +55,7 @@ class ComicsController < ApplicationController
     if logged_in?
       comic = current_user.comics.find_by(id: params[:id])
       if params.value?('')
-        flash[:warning] = "Please make sure all fields are completed."
+        flash[:notice] = "Please make sure all fields are completed."
         redirect to "/comics/#{params[:id]}/edit"
       else
         comic.update(title: params[:title], series_name: params[:series_name], creator: params[:creator], publisher: params[:publisher], published_date: params[:published_date], issue: params[:issue], media_type: params[:media_type])
@@ -73,7 +73,7 @@ class ComicsController < ApplicationController
         comic.delete
         redirect to '/comics'
       else
-        flash[:warning] = 'You can only delete your own comics!'
+        flash[:notice] = 'You can only delete your own comics!'
         redirect to "/comics/#{params[:id]}"
       end
     end
