@@ -1,6 +1,6 @@
 # Comiks Tracker
 
-A simple Sinatra app that will allow you to inventory your comic books - physical and virtual. You can see it in action on Heroku [Comiks Tracker](https://comiks-tracker.herokuapp.com).
+A simple Sinatra app that will allow you to inventory your comic books - physical and virtual. You can see it in action on Heroku >> [Comiks Tracker](https://comiks-tracker.herokuapp.com).
 
 # Thoughts
 
