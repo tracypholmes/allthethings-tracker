@@ -10,6 +10,7 @@ NOTES.md
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/db/development.sqlite
 
 # Used by dotenv library to load environment variables.
 # .env
