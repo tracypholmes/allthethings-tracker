@@ -28,4 +28,4 @@ The project is available as open source under the terms of the [MIT License](htt
 
 ## Shoutouts
 
-Thanks to Brian Emory and his [Corneal](https://github.com/thebrianemory/corneal) gem and also. The [Wim Wauters Blog](http://blog.wimwauters.com/sinatra-todo-app-with-activerecord-step-2/) to get me straight with my Bootstrap tables.
+Thanks to Brian Emory and his [Corneal](https://github.com/thebrianemory/corneal) gem. Thanks also to The [Wim Wauters Blog](http://blog.wimwauters.com/sinatra-todo-app-with-activerecord-step-2/) for helping me get straight with my Bootstrap tables.
